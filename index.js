@@ -38,12 +38,10 @@ const expressServer = app.listen(
 
 // SOCKET IO
 const io = new Server(expressServer, {
-  cors: {
-    origin:
-      process.env.NODE_ENV === "production"
-        ? false
-        : ["http://localhost:5173", "http://127.0.0.1:5173"],
-  },
+ cors({
+    origin: "https://socketio-chatting.netlify.app",
+    credentials: true,
+  })
 });
 
 const rooms = ["Technology", "Coding", "Game", "Finance", "Movies"];
